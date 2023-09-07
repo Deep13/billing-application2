@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
-// import FeatherIcon from "feather-icons-react";
+import FeatherIcon from "feather-icons-react";
 import Data from "../assets/jsons/invoiceList";
 // import Table from "../_components/Datatable/datatable";
 import "../components/antd.css";
@@ -19,6 +19,8 @@ const InvoiceManagement = () => {
   const [menu, setMenu] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState([]);
   const [show, setShow] = useState(false);
+
+  const navigate = useNavigate()
 
   const toggleMobileMenu = () => {
     setMenu(!menu);
@@ -160,7 +162,12 @@ const InvoiceManagement = () => {
 
         <div className="page-wrapper">
           <div className="content container-fluid">
-
+            <div className="flex justify-end">
+              <button onClick={() => navigate('/buyer-module')} className="btn btn-primary text-lg flex items-center gap-2">
+                <FeatherIcon icon='plus' />
+                Add Invoice
+              </button>
+            </div>
             <InvoiceHead
               setShow={setShow}
               show={show}

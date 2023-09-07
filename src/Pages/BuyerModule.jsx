@@ -3,11 +3,12 @@ import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
 import Header from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import Select2 from '../components/SelectDropdown'
 import { Logo, signature, circle1, circle2 } from "../components/imagepath";
 import FeatherIcon from "feather-icons-react";
 // import Select2 from "react-select2-wrapper";
 
-const InvoiceGeneration = () => {
+const BuyerModule = () => {
   const [menu, setMenu] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
 
@@ -21,6 +22,46 @@ const InvoiceGeneration = () => {
     { id: 3, text: "Customer 2" },
     { id: 4, text: "Customer 3" },
   ]);
+
+  const [state, setState] = useState([
+    { text: 'Andhra Pradesh' },
+    { text: 'Arunachal Pradesh' },
+    { text: 'Assam' },
+    { text: 'Bihar' },
+    { text: 'Chhattisgarh' },
+    { text: 'Goa' },
+    { text: 'Gujarat' },
+    { text: 'Haryana' },
+    { text: 'Himachal Pradesh' },
+    { text: 'Jharkhand' },
+    { text: 'Karnataka' },
+    { text: 'Kerala' },
+    { text: 'Madhya Pradesh' },
+    { text: 'Maharashtra' },
+    { text: 'Manipur' },
+    { text: 'Meghalaya' },
+    { text: 'Mizoram' },
+    { text: 'Nagaland' },
+    { text: 'Odisha' },
+    { text: 'Punjab' },
+    { text: 'Rajasthan' },
+    { text: 'Sikkim' },
+    { text: 'Tamil Nadu' },
+    { text: 'Telangana' },
+    { text: 'Tripura' },
+    { text: 'Uttar Pradesh' },
+    { text: 'Uttarakhand' },
+    { text: 'West Bengal' }
+  ])
+
+
+
+  const [idType, setIdType] = useState([
+    { id: 1, text: "Aadhar Card" },
+    { id: 3, text: "PAN Card" },
+    { id: 2, text: "Driving License" },
+    { id: 4, text: "Voter Id" }
+  ])
 
   const [productOption, setProductOption] = useState([
     { id: 1, text: "Select Product" },
@@ -80,11 +121,11 @@ const InvoiceGeneration = () => {
                       <div className="row align-item-center">
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>Invoice Number</label>
+                            <label>Contact Number</label>
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Enter First Name"
+                              placeholder="Your Phone Number"
                             />
                           </div>
                         </div>
@@ -93,22 +134,20 @@ const InvoiceGeneration = () => {
                             <label>Customer Name</label>
                             <ul className="form-group-plus css-equal-heights">
                               <li>
-                                {/* <Select2
-                                  // className="w-100"
-                                  data={product}
-                                  options={{
-                                    placeholder: "Choose Customer",
-                                  }}
-                                /> */}
+                                <input
+                                  type="text"
+                                  className="form-control"
+                                  placeholder="Name"
+                                />
                               </li>
                               <li>
-                                <Link
+                                {/* <Link
                                   className="btn btn-primary form-plus-btn"
                                   to="/add-customer"
                                 >
-                                  {/* <i className="fe fe-plus-circle" /> */}
+                                  <i className="fe fe-plus-circle" />
                                   <FeatherIcon icon="plus-circle" />
-                                </Link>
+                                </Link> */}
                               </li>
                             </ul>
                           </div>
@@ -127,6 +166,16 @@ const InvoiceGeneration = () => {
                           </div>
                         </div>
                         <div className="col-lg-4 col-md-6 col-sm-12">
+                          <div className="form-group notes-form-group-info">
+                            <label>Address</label>
+                            <textarea
+                              className="form-control"
+                              placeholder="Enter Address"
+                              defaultValue={""}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
                             <label>Due Date</label>
                             <div className="cal-icon cal-icon-info">
@@ -137,18 +186,27 @@ const InvoiceGeneration = () => {
                               ></DatePicker>
                             </div>
                           </div>
+
                         </div>
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>Reference No</label>
+                            <label>ID Type</label>
+                            <br />
+                            <Select2
+                              className='form-control relative'
+                              data={idType}
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label>Card Number</label>
+                            <br />
                             <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Enter Phone Number"
+                              className='form-control relative'
+                              placeholder="Enter your card number here"
                             />
                           </div>
                         </div>
-                        <div className="col-lg-4 col-md-6 col-sm-12">
+                        {/* <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group d-flex align-items-end h-100">
                             <label className="custom_check me-3">
                               <input type="checkbox" name="invoice" />
@@ -159,71 +217,86 @@ const InvoiceGeneration = () => {
                               <span className="checkmark" /> Recurring Invoice
                             </label>
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-lg-12">
-                          <div className="form-group">
+                          {/* <div className="form-group">
                             <label>Products</label>
                             <ul className="form-group-plus css-equal-heights">
                               <li>
-                                {/* <select className="select">
+                                <select className="select">
                                   <option>Select Product</option>
                                   <option>Product 1</option>
                                   <option>Product 2</option>
                                   <option>Product 3</option>
-                                </select> */}
-                                {/* <Select2
+                                </select>
+                                <Select2
                                   // className="w-100"
                                   data={productOption}
                                   options={{
                                     placeholder: "Select Product",
                                   }}
-                                /> */}
+                                />
                               </li>
                               <li>
                                 <Link
                                   className="btn btn-primary form-plus-btn"
                                   to="/add-product"
                                 >
-                                  {/* <i className="fe fe-plus-circle" /> */}
+                                  <i className="fe fe-plus-circle" />
                                   <FeatherIcon icon="plus-circle" />
                                 </Link>
                               </li>
                             </ul>
-                          </div>
+                          </div> */}
                         </div>
-                        <div className="col-lg-4 col-md-6 col-sm-12">
+                        {/* <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
                             <label>Currency</label>
-                            {/* <Select2
+                            <Select2
                               // className="w-100"
                               data={currency}
                               options={{
                                 placeholder: "Select Currency",
                               }}
-                            /> */}
+                            />
                           </div>
-                        </div>
+                        </div> */}
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>Website</label>
+                            <label>GST Number</label>
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Enter Website Address"
+                              placeholder="Enter GST Number"
                             />
                           </div>
                         </div>
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>Notes</label>
+                            <label>State</label>
+                            <Select2
+                              className='form-control relative'
+                              data={state}
+                            />
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-sm-12">
+                          <div className="form-group">
+                            <label>City PIN</label>
                             <input
                               type="text"
                               className="form-control"
-                              placeholder="Enter Your Notes"
+                              placeholder="Enter PIN code here"
                             />
                           </div>
                         </div>
                       </div>
+                    </div>
+                    <div className="col-lg-12 py-2 col-md-6 col-sm-12 flex justify-end items-center">
+                      <button className="btn btn-primary flex items-center gap-2">
+                        <FeatherIcon icon='plus' />
+                        Add Product
+                      </button>
                     </div>
                     <div className="form-group-item">
                       <div className="card-table">
@@ -233,12 +306,15 @@ const InvoiceGeneration = () => {
                               <thead className="thead-light">
                                 <tr>
                                   <th>Product / Service</th>
-                                  <th>Quantity</th>
-                                  <th>Unit</th>
+                                  <th>Type</th>
+                                  <th>Purity</th>
                                   <th>Rate</th>
-                                  <th>Discount</th>
-                                  <th>Tax</th>
+                                  <th>Description</th>
+                                  <th>Pcs</th>
+                                  <th>Gross.</th>
+                                  <th>Net</th>
                                   <th>Amount</th>
+                                  <th>Making charges</th>
                                   <th>Action</th>
                                 </tr>
                               </thead>
@@ -249,8 +325,11 @@ const InvoiceGeneration = () => {
                                   <td>Pcs</td>
                                   <td>₹120.00</td>
                                   <td>0</td>
-                                  <td>0</td>
+                                  <td>5</td>
                                   <td>₹120.00</td>
+                                  <td>₹120.00</td>
+                                  <td>₹120.00</td>
+                                  <td>₹1200.00</td>
                                   <td className="d-flex align-items-center">
                                     <Link
                                       to="#"
@@ -357,14 +436,39 @@ const InvoiceGeneration = () => {
                             <div className="invoice-total-box">
                               <div className="invoice-total-inner">
                                 <p>
-                                  Taxable Amount <span>₹120.00</span>
+                                  CGST <span>₹120.00</span>
+                                </p>
+                                <p>
+                                  SGST <span>₹120.00</span>
                                 </p>
                                 <p>
                                   Discount <span>₹13.20</span>
                                 </p>
                                 <p>
-                                  Vat <span>₹0.00</span>
+                                  Payment Mode
                                 </p>
+                                <div className="form-check">
+                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked />
+                                  <label className="form-check-label" >
+                                    Card
+                                  </label>
+                                </div>
+                                <div className="form-check">
+                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                  <label className="form-check-label" >
+                                    Cash
+                                  </label>
+                                </div>
+                                <div className="form-check">
+                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                  <label className="form-check-label" >
+                                    Other
+                                  </label>
+                                </div>
+
+                                {/* <p>
+                                  Vat <span>₹0.00</span>
+                                </p> */}
                                 <div className="status-toggle justify-content-between">
                                   <div className="d-flex align-center">
                                     <p>Round Off </p>
@@ -390,19 +494,19 @@ const InvoiceGeneration = () => {
                                 </h4>
                               </div>
                             </div>
-                            <div className="form-group">
+                            {/* <div className="form-group">
                               <label>Signature Name</label>
                               <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Enter Signature Name"
                               />
-                            </div>
-                            <div className="form-group mb-0">
+                            </div> */}
+                            {/* <div className="form-group mb-0">
                               <label>Signature Image</label>
                               <div className="form-group service-upload service-upload-info mb-0">
                                 <span>
-                                  {/* <i className="fe fe-upload-cloud me-1" /> */}
+                                  <i className="fe fe-upload-cloud me-1" />
                                   <FeatherIcon
                                     icon="upload-cloud"
                                     className="me-1"
@@ -416,7 +520,7 @@ const InvoiceGeneration = () => {
                                 />
                                 <div id="frames" />
                               </div>
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                       </div>
@@ -661,4 +765,4 @@ const InvoiceGeneration = () => {
     </>
   );
 };
-export default InvoiceGeneration;
+export default BuyerModule;

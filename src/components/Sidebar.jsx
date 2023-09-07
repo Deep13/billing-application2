@@ -264,6 +264,19 @@ const Sidebar = (props) => {
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
                     <FeatherIcon icon="users" /> <span>Due Management</span>{" "}
                   </Link>
+                  <Link
+                    to="/invoice-generation"
+                    className={`${("/due_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
+                      }`}
+                  // onClick={() =>
+                  //     toggleSidebar(
+                  //         isSideMenu == "application" ? "" : "application"
+                  //     )
+                  // }
+                  >
+                    {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
+                    <FeatherIcon icon="users" /> <span>Invoice Genereation</span>{" "}
+                  </Link>
                 </li>
               </ul>
               {/* /Settings */}
