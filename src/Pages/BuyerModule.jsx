@@ -54,6 +54,34 @@ const BuyerModule = () => {
     { text: 'West Bengal' }
   ])
 
+  const [jewelleryType, setJewelleryType] = useState([
+    { text: "Diamond Necklace" },
+    { text: "Gold Bracelet" },
+    { text: "Pearl Earrings" },
+    { text: "Silver Ring" },
+    { text: "Sapphire Pendant" },
+    { text: "Emerald Brooch" },
+    { text: "Ruby Anklet" },
+    { text: "Amethyst Tiara" },
+    { text: "Opal Cufflinks" },
+    { text: "Platinum Watch" },
+  ])
+
+  const [tableItems, setTableItems] = useState([
+    {
+      product: 'Product1',
+      type: 'Gold',
+      purity: 54,
+      rate: 64000,
+      desc: 'very good',
+      pcs: 2,
+      gross: 153500,
+      net: 153600,
+      amount: 156000,
+      making_chares: 12000,
+    }
+  ])
+
 
 
   const [idType, setIdType] = useState([
@@ -93,6 +121,23 @@ const BuyerModule = () => {
     { id: 4, text: "15%" },
   ]);
 
+  const AddItemToTable = () => {
+    let item = {
+      product: 'Product1',
+      type: 'Gold',
+      purity: 54,
+      rate: 64000,
+      desc: 'very good',
+      pcs: 2,
+      gross: 153500,
+      net: 153600,
+      amount: 156000,
+      making_chares: 12000,
+    }
+    setTableItems(prev => [item, ...prev])
+
+  }
+
   useEffect(() => {
     let elements = Array.from(
       document.getElementsByClassName("react-datepicker-wrapper")
@@ -110,7 +155,7 @@ const BuyerModule = () => {
           <div className="content container-fluid">
             <div className="page-header">
               <div className="content-page-header">
-                <h5>Buyer Module</h5>
+                <h5>Invoice Generation</h5>
               </div>
             </div>
             <div className="row">
@@ -293,7 +338,12 @@ const BuyerModule = () => {
                       </div>
                     </div>
                     <div className="col-lg-12 py-2 col-md-6 col-sm-12 flex justify-end items-center">
-                      <button className="btn btn-primary flex items-center gap-2">
+                      <button
+                        onClick={() => AddItemToTable()}
+                        data-bs-toggle="modal"
+                        data-bs-target="#add_discount"
+                        // onClick={AddItemToTable}
+                        className="btn btn-primary flex items-center gap-2">
                         <FeatherIcon icon='plus' />
                         Add Product
                       </button>
@@ -318,44 +368,50 @@ const BuyerModule = () => {
                                   <th>Action</th>
                                 </tr>
                               </thead>
-                              <tbody>
-                                <tr>
-                                  <td>Lorem ipsum dolor sit amet</td>
-                                  <td>0</td>
-                                  <td>Pcs</td>
-                                  <td>₹120.00</td>
-                                  <td>0</td>
-                                  <td>5</td>
-                                  <td>₹120.00</td>
-                                  <td>₹120.00</td>
-                                  <td>₹120.00</td>
-                                  <td>₹1200.00</td>
-                                  <td className="d-flex align-items-center">
-                                    <Link
-                                      to="#"
-                                      className="btn-action-icon me-2"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#add_discount"
-                                    >
-                                      <span>
-                                        {/* <i className="fe fe-edit" /> */}
-                                        <FeatherIcon icon="edit" />
-                                      </span>
-                                    </Link>
-                                    <Link
-                                      to="#"
-                                      className="btn-action-icon"
-                                      data-bs-toggle="modal"
-                                      data-bs-target="#delete_discount"
-                                    >
-                                      <span>
-                                        {/* <i className="fe fe-trash-2" /> */}
-                                        <FeatherIcon icon="trash-2" />
-                                      </span>
-                                    </Link>
-                                  </td>
-                                </tr>
-                              </tbody>
+                              {
+                                tableItems.map((curr, index) => {
+                                  return (
+                                    <tbody key={curr.product + index}>
+                                      <tr >
+                                        <td>{curr.product}</td>
+                                        <td>{curr.type}</td>
+                                        <td>{curr.purity}</td>
+                                        <td>{curr.rate}</td>
+                                        <td>{curr.desc}</td>
+                                        <td>{curr.pcs}</td>
+                                        <td>{curr.gross}</td>
+                                        <td>{curr.net}</td>
+                                        <td>{curr.amount}</td>
+                                        <td>{curr.making_chares}</td>
+                                        <td className="d-flex align-items-center">
+                                          <Link
+                                            to="#"
+                                            className="btn-action-icon me-2"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#add_discount"
+                                          >
+                                            <span>
+                                              {/* <i className="fe fe-edit" /> */}
+                                              <FeatherIcon icon="edit" />
+                                            </span>
+                                          </Link>
+                                          <Link
+                                            to="#"
+                                            className="btn-action-icon"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#delete_discount"
+                                          >
+                                            <span>
+                                              {/* <i className="fe fe-trash-2" /> */}
+                                              <FeatherIcon icon="trash-2" />
+                                            </span>
+                                          </Link>
+                                        </td>
+                                      </tr>
+                                    </tbody>
+                                  )
+                                })
+                              }
                             </table>
                           </div>
                         </div>
@@ -553,7 +609,7 @@ const BuyerModule = () => {
             <div className="modal-content">
               <div className="modal-header border-0 pb-0">
                 <div className="form-header modal-header-title text-start mb-0 align-center">
-                  <h4 className="mb-0">Add Tax &amp; Discount</h4>
+                  <h4 className="mb-0">Add/Edit</h4>
                 </div>
                 <button
                   type="button"
@@ -570,9 +626,9 @@ const BuyerModule = () => {
                 <div className="row">
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
-                      <label>Rate</label>
+                      <label>Product</label>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder={120}
                       />
@@ -580,24 +636,85 @@ const BuyerModule = () => {
                   </div>
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group">
-                      <label>Discount Amount</label>
+                      <label>Type</label>
+                      <Select2
+                        className="form-control w-100"
+                        data={jewelleryType}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Purity</label>
                       <input
-                        type="number"
+                        type="text"
                         className="form-control"
                         placeholder={0}
                       />
                     </div>
                   </div>
                   <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Rate</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={0}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Description</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={0}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Number of Pieces(Pcs.)</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={0}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Amount</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={0}
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-12 col-md-12">
+                    <div className="form-group">
+                      <label>Making Charges</label>
+                      <input
+                        type="text"
+                        className="form-control"
+                        placeholder={0}
+                      />
+                    </div>
+                  </div>
+
+
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group mb-0">
                       <label>Tax</label>
-                      {/* <Select2
-                        // className="w-100"
+                      <Select2
+                        className="w-100 form-control"
                         data={tax}
                         options={{
                           placeholder: "Choose Customer",
                         }}
-                      /> */}
+                      />
                     </div>
                   </div>
                 </div>
