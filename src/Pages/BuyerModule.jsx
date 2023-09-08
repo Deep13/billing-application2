@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Select2 from '../components/SelectDropdown'
@@ -15,6 +16,8 @@ const BuyerModule = () => {
   const toggleMobileMenu = () => {
     setMenu(!menu);
   };
+
+  const [addProduct, setAddProduct] = useState(false)
 
   const [product, setProduct] = useState([
     { id: 1, text: "Choose Customer" },
@@ -67,6 +70,18 @@ const BuyerModule = () => {
     { text: "Platinum Watch" },
   ])
 
+  const [editValues, setEditValues] = useState({
+    product: '',
+    type: '',
+    purity: 0,
+    rate: 0,
+    desc: '',
+    pcs: 0,
+    gross: 0,
+    net: 0,
+    amount: 0,
+    making_chares: 0,
+  })
   const [tableItems, setTableItems] = useState([
     {
       product: 'Product1',
@@ -81,6 +96,16 @@ const BuyerModule = () => {
       making_chares: 12000,
     }
   ])
+  const productRef = useRef()
+  // const typeRef = useRef()
+  const purityRef = useRef()
+  const rateRef = useRef()
+  const descRef = useRef()
+  const pcsRef = useRef()
+  const grossRef = useRef()
+  const netRef = useRef()
+  const amountRef = useRef()
+  const makingChargesRef = useRef()
 
 
 
@@ -114,6 +139,8 @@ const BuyerModule = () => {
     { id: 5, text: "15%" },
   ]);
 
+  const [editMode, setEditMode] = useState(false)
+
   const [tax, setTax] = useState([
     { id: 1, text: "N/A" },
     { id: 2, text: "5%" },
@@ -121,21 +148,48 @@ const BuyerModule = () => {
     { id: 4, text: "15%" },
   ]);
 
-  const AddItemToTable = () => {
-    let item = {
-      product: 'Product1',
-      type: 'Gold',
-      purity: 54,
-      rate: 64000,
-      desc: 'very good',
-      pcs: 2,
-      gross: 153500,
-      net: 153600,
-      amount: 156000,
-      making_chares: 12000,
-    }
-    setTableItems(prev => [item, ...prev])
+  const [typeOption, setTypeOption] = useState()
+  const [cardType, setCardType] = useState('card')
 
+  const handleCardType = (e) => {
+    setCardType(e.target.value)
+  }
+
+  const handleTypeChange = (e) => {
+    setTypeOption(e.target.value)
+  }
+
+  const AddItemToTable = () => {
+    //reset items first
+
+
+    let item = {
+      product: productRef.current.value,
+      type: typeOption,
+      purity: purityRef.current.value,
+      rate: rateRef.current.value,
+      desc: descRef.current.value,
+      pcs: pcsRef.current.value,
+      gross: grossRef.current,
+      net: netRef.current,
+      amount: amountRef.current.value,
+      making_chares: makingChargesRef.current.value,
+    }
+    let item2 = {
+      product: 'lfjaifjoij',
+      type: 'fadslfkdsjlfk',
+      purity: 520,
+      rate: '52400',
+      desc: 'good good good',
+      pcs: 6,
+      gross: 72,
+      net: 69,
+      amount: 5847000,
+      making_chares: 150000,
+    }
+    console.log(item)
+    setTableItems(prev => [item, ...prev])
+    // reset values remember
   }
 
   useEffect(() => {
@@ -144,6 +198,8 @@ const BuyerModule = () => {
     );
     elements.map((element) => element.classList.add("w-100"));
   }, []);
+
+
 
   return (
     <>
@@ -233,24 +289,19 @@ const BuyerModule = () => {
                           </div>
 
                         </div>
+
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>ID Type</label>
-                            <br />
-                            <Select2
-                              className='form-control relative'
-                              data={idType}
-                            />
-                          </div>
-                          <div className="form-group">
-                            <label>Card Number</label>
-                            <br />
+                            <label>GST Number</label>
                             <input
-                              className='form-control relative'
-                              placeholder="Enter your card number here"
+                              type="text"
+                              className="form-control"
+                              placeholder="Enter GST Number"
                             />
                           </div>
                         </div>
+                        {/* //place it here */}
+
                         {/* <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group d-flex align-items-end h-100">
                             <label className="custom_check me-3">
@@ -308,11 +359,20 @@ const BuyerModule = () => {
                         </div> */}
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
-                            <label>GST Number</label>
+                            <label>ID Type</label>
+                            <br />
+                            <Select2
+                              onChange={handleCardType}
+                              className='form-control relative'
+                              data={idType}
+                            />
+                          </div>
+                          <div className="form-group">
+                            {/* <label>Card Number</label> */}
+                            <br />
                             <input
-                              type="text"
-                              className="form-control"
-                              placeholder="Enter GST Number"
+                              className='form-control relative'
+                              placeholder={`Enter your ${cardType} number here`}
                             />
                           </div>
                         </div>
@@ -339,10 +399,21 @@ const BuyerModule = () => {
                     </div>
                     <div className="col-lg-12 py-2 col-md-6 col-sm-12 flex justify-end items-center">
                       <button
-                        onClick={() => AddItemToTable()}
                         data-bs-toggle="modal"
                         data-bs-target="#add_discount"
-                        // onClick={AddItemToTable}
+                        onClick={() => {
+                          setEditMode(false)
+                          productRef.current.value = ''
+                          setTypeOption('')
+                          purityRef.current.value = ''
+                          rateRef.current.value = 0
+                          descRef.current.value = 0
+                          pcsRef.current.value = 0
+                          // grossRef.current,
+                          // netRef.current = 0,
+                          amountRef.current.value = 0
+                          makingChargesRef.current.value = 0
+                        }}
                         className="btn btn-primary flex items-center gap-2">
                         <FeatherIcon icon='plus' />
                         Add Product
@@ -384,8 +455,22 @@ const BuyerModule = () => {
                                         <td>{curr.amount}</td>
                                         <td>{curr.making_chares}</td>
                                         <td className="d-flex align-items-center">
-                                          <Link
+                                          <button
                                             to="#"
+                                            onClick={() => {
+                                              // setEditValues({ ...curr })
+                                              setEditMode(true)
+                                              productRef.current.value = curr.product
+                                              setTypeOption(curr.type)
+                                              purityRef.current.value = curr.purity
+                                              rateRef.current.value = curr.rate
+                                              descRef.current.value = curr.desc
+                                              pcsRef.current.value = curr.pcs
+                                              // grossRef.current,
+                                              // netRef.current = 0,
+                                              amountRef.current.value = curr.amount
+                                              makingChargesRef.current.value = curr.making_chares
+                                            }}
                                             className="btn-action-icon me-2"
                                             data-bs-toggle="modal"
                                             data-bs-target="#add_discount"
@@ -394,7 +479,7 @@ const BuyerModule = () => {
                                               {/* <i className="fe fe-edit" /> */}
                                               <FeatherIcon icon="edit" />
                                             </span>
-                                          </Link>
+                                          </button>
                                           <Link
                                             to="#"
                                             className="btn-action-icon"
@@ -421,7 +506,8 @@ const BuyerModule = () => {
                       <div className="row">
                         <div className="col-xl-6 col-lg-12">
                           <div className="form-group-bank">
-                            <div className="form-group">
+                            <div className="invoice-total-box">
+                              {/* <div className="form-group">
                               <label>Select Bank</label>
                               <div className="bank-details">
                                 <Link
@@ -434,23 +520,51 @@ const BuyerModule = () => {
                                   Add Bank Details
                                 </Link>
                               </div>
+                            </div> */}
+                              <p>
+                                Payment Mode
+                              </p>
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked />
+                                <label className="form-check-label" >
+                                  Card
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <label className="form-check-label" >
+                                  Cash
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <label className="form-check-label" >
+                                  Bank Transfer
+                                </label>
+                              </div>
+                              <div className="form-check">
+                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <label className="form-check-label" >
+                                  Other
+                                </label>
+                              </div>
+                              <div className="form-group notes-form-group-info">
+                                <label>Notes</label>
+                                <textarea
+                                  className="form-control"
+                                  placeholder="Enter Notes"
+                                  defaultValue={""}
+                                />
+                              </div>
                             </div>
-                            <div className="form-group notes-form-group-info">
-                              <label>Notes</label>
-                              <textarea
-                                className="form-control"
-                                placeholder="Enter Notes"
-                                defaultValue={""}
-                              />
-                            </div>
-                            <div className="form-group notes-form-group-info mb-0">
+                            {/* <div className="form-group notes-form-group-info mb-0">
                               <label>Terms and Conditions</label>
                               <textarea
                                 className="form-control"
                                 placeholder="Enter Terms and Conditions"
                                 defaultValue={""}
                               />
-                            </div>
+                            </div> */}
                           </div>
                         </div>
                         <div className="col-xl-6 col-lg-12">
@@ -500,27 +614,6 @@ const BuyerModule = () => {
                                 <p>
                                   Discount <span>₹13.20</span>
                                 </p>
-                                <p>
-                                  Payment Mode
-                                </p>
-                                <div className="form-check">
-                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked />
-                                  <label className="form-check-label" >
-                                    Card
-                                  </label>
-                                </div>
-                                <div className="form-check">
-                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
-                                  <label className="form-check-label" >
-                                    Cash
-                                  </label>
-                                </div>
-                                <div className="form-check">
-                                  <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
-                                  <label className="form-check-label" >
-                                    Other
-                                  </label>
-                                </div>
 
                                 {/* <p>
                                   Vat <span>₹0.00</span>
@@ -609,7 +702,9 @@ const BuyerModule = () => {
             <div className="modal-content">
               <div className="modal-header border-0 pb-0">
                 <div className="form-header modal-header-title text-start mb-0 align-center">
-                  <h4 className="mb-0">Add/Edit</h4>
+                  <h4 className="mb-0">{
+                    editMode ? 'Edit Product' : 'Add Product'
+                  }</h4>
                 </div>
                 <button
                   type="button"
@@ -628,6 +723,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Product</label>
                       <input
+                        ref={productRef}
                         type="text"
                         className="form-control"
                         placeholder={120}
@@ -638,6 +734,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Type</label>
                       <Select2
+                        onChange={handleTypeChange}
                         className="form-control w-100"
                         data={jewelleryType}
                       />
@@ -647,6 +744,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Purity</label>
                       <input
+                        ref={purityRef}
                         type="text"
                         className="form-control"
                         placeholder={0}
@@ -657,6 +755,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Rate</label>
                       <input
+                        ref={rateRef}
                         type="text"
                         className="form-control"
                         placeholder={0}
@@ -667,6 +766,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Description</label>
                       <input
+                        ref={descRef}
                         type="text"
                         className="form-control"
                         placeholder={0}
@@ -677,6 +777,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Number of Pieces(Pcs.)</label>
                       <input
+                        ref={pcsRef}
                         type="text"
                         className="form-control"
                         placeholder={0}
@@ -688,6 +789,7 @@ const BuyerModule = () => {
                       <label>Amount</label>
                       <input
                         type="text"
+                        ref={amountRef}
                         className="form-control"
                         placeholder={0}
                       />
@@ -697,6 +799,7 @@ const BuyerModule = () => {
                     <div className="form-group">
                       <label>Making Charges</label>
                       <input
+                        ref={makingChargesRef}
                         type="text"
                         className="form-control"
                         placeholder={0}
@@ -727,13 +830,14 @@ const BuyerModule = () => {
                 >
                   Cancel
                 </button>
-                <button
-                  type="submit"
+                {/* <button
+                type="submit"
                   data-bs-dismiss="modal"
-                  className="btn btn-primary paid-continue-btn"
+                  className="btn btn-primary"
                 >
                   Save
-                </button>
+                </button> */}
+                <button onClick={AddItemToTable} className="btn btn-primary">Save</button>
               </div>
             </div>
           </div>
