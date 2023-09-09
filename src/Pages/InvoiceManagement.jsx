@@ -44,7 +44,7 @@ const InvoiceManagement = () => {
       title: "Invoice ID",
       dataIndex: "Invoice",
       render: (text, record) => (
-        <Link to="/invoice-details" className="invoice-link">
+        <Link to="/buyer-module" className="invoice-link">
           {record.Invoice}
         </Link>
       ),
@@ -132,7 +132,7 @@ const InvoiceManagement = () => {
                   <i className="far fa-edit me-2" />
                   Edit
                 </Link>
-                <Link className="dropdown-item" to="/invoice-details">
+                <Link className="dropdown-item" to="/buyer-module">
                   <i className="far fa-eye me-2" />
                   View
                 </Link>

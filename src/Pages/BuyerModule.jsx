@@ -18,6 +18,7 @@ const BuyerModule = () => {
   };
 
   const [addProduct, setAddProduct] = useState(false)
+  const [disable, setDisable] = useState(false)
 
   const [product, setProduct] = useState([
     { id: 1, text: "Choose Customer" },
@@ -209,10 +210,11 @@ const BuyerModule = () => {
         {/* <!-- Page Wrapper --> */}
         <div className="page-wrapper">
           <div className="content container-fluid">
-            <div className="page-header">
+            <div className="page-header flex justify-between items-center">
               <div className="content-page-header">
-                <h5>Invoice Generation</h5>
+                <h5>Buyer Module</h5>
               </div>
+              <button disabled={!disable} onClick={() => setDisable(false)} className="btn btn-primary">Edit</button>
             </div>
             <div className="row">
               <div className="col-md-12">
@@ -224,6 +226,8 @@ const BuyerModule = () => {
                           <div className="form-group">
                             <label>Contact Number</label>
                             <input
+                              disabled={disable}
+                              autoFocus
                               type="text"
                               className="form-control"
                               placeholder="Your Phone Number"
@@ -236,6 +240,7 @@ const BuyerModule = () => {
                             <ul className="form-group-plus css-equal-heights">
                               <li>
                                 <input
+                                  disabled={disable}
                                   type="text"
                                   className="form-control"
                                   placeholder="Name"
@@ -258,6 +263,7 @@ const BuyerModule = () => {
                             <label>Invoice Date</label>
                             <div className="cal-icon cal-icon-info">
                               <DatePicker
+                                disabled={disable}
                                 className="datetimepicker form-control"
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
@@ -270,6 +276,7 @@ const BuyerModule = () => {
                           <div className="form-group notes-form-group-info">
                             <label>Address</label>
                             <textarea
+                              disabled={disable}
                               className="form-control"
                               placeholder="Enter Address"
                               defaultValue={""}
@@ -281,6 +288,7 @@ const BuyerModule = () => {
                             <label>Due Date</label>
                             <div className="cal-icon cal-icon-info">
                               <DatePicker
+                                disabled={disable}
                                 className="datetimepicker form-control"
                                 selected={startDate}
                                 onChange={(date) => setStartDate(date)}
@@ -294,6 +302,7 @@ const BuyerModule = () => {
                           <div className="form-group">
                             <label>GST Number</label>
                             <input
+                              disabled={disable}
                               type="text"
                               className="form-control"
                               placeholder="Enter GST Number"
@@ -362,6 +371,7 @@ const BuyerModule = () => {
                             <label>ID Type</label>
                             <br />
                             <Select2
+                              disabled={disable}
                               onChange={handleCardType}
                               className='form-control relative'
                               data={idType}
@@ -371,6 +381,7 @@ const BuyerModule = () => {
                             {/* <label>Card Number</label> */}
                             <br />
                             <input
+                              disabled={disable}
                               className='form-control relative'
                               placeholder={`Enter your ${cardType} number here`}
                             />
@@ -380,6 +391,7 @@ const BuyerModule = () => {
                           <div className="form-group">
                             <label>State</label>
                             <Select2
+                              disabled={disable}
                               className='form-control relative'
                               data={state}
                             />
@@ -389,6 +401,7 @@ const BuyerModule = () => {
                           <div className="form-group">
                             <label>City PIN</label>
                             <input
+                              disabled={disable}
                               type="text"
                               className="form-control"
                               placeholder="Enter PIN code here"
@@ -401,6 +414,7 @@ const BuyerModule = () => {
                       <button
                         data-bs-toggle="modal"
                         data-bs-target="#add_discount"
+                        disabled={disable}
                         onClick={() => {
                           setEditMode(false)
                           productRef.current.value = ''
@@ -525,25 +539,25 @@ const BuyerModule = () => {
                                 Payment Mode
                               </p>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked />
+                                <input disabled={disable} className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" checked />
                                 <label className="form-check-label" >
                                   Card
                                 </label>
                               </div>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <input disabled={disable} className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
                                 <label className="form-check-label" >
                                   Cash
                                 </label>
                               </div>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <input disabled={disable} className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
                                 <label className="form-check-label" >
                                   Bank Transfer
                                 </label>
                               </div>
                               <div className="form-check">
-                                <input className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
+                                <input disabled={disable} className="form-check-input" type="radio" name="flexRadioDisabled" id="flexRadioCheckedDisabled" />
                                 <label className="form-check-label" >
                                   Other
                                 </label>
@@ -551,6 +565,7 @@ const BuyerModule = () => {
                               <div className="form-group notes-form-group-info">
                                 <label>Notes</label>
                                 <textarea
+                                  disabled={disable}
                                   className="form-control"
                                   placeholder="Enter Notes"
                                   defaultValue={""}
@@ -573,19 +588,21 @@ const BuyerModule = () => {
                               <div className="col-lg-4 col-md-12">
                                 <div className="form-group">
                                   <label>Discount Type</label>
-                                  {/* <Select2
-                                    // className="w-100"
+                                  <Select2
+                                    disabled={disable}
+                                    className="w-100 form-control"
                                     data={percentage}
                                     options={{
                                       placeholder: "Percentage(%)",
                                     }}
-                                  /> */}
+                                  />
                                 </div>
                               </div>
                               <div className="col-lg-4 col-md-12">
                                 <div className="form-group">
                                   <label>Discount (%)</label>
                                   <input
+                                    disabled={disable}
                                     type="text"
                                     className="form-control"
                                     placeholder={10}
@@ -681,7 +698,7 @@ const BuyerModule = () => {
                       >
                         Cancel
                       </button>
-                      <button type="submit" className="btn btn-primary">
+                      <button onClick={() => setDisable(true)} type="submit" className="btn btn-primary">
                         Save Changes
                       </button>
                     </div>

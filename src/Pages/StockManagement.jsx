@@ -6,6 +6,8 @@ import FeatherIcon from "feather-icons-react";
 import Data from "./inventory";
 import "../components/antd.css";
 import { Table } from "antd";
+import Select2 from '../components/SelectDropdown'
+
 import {
   onShowSizeChange,
   itemRender,
@@ -17,6 +19,18 @@ const StockManagement = () => {
 
   const [menu, setMenu] = useState(false);
   const [show, setShow] = useState(false);
+  const [purity, setPurity] = useState();
+  const purityType = [
+    { text: 18 },
+    { text: 24 },
+    { text: 22 },
+    { text: 14 },
+    { text: 10 }
+  ]
+
+  const handlePurityChange = (e) => {
+    setPurity(e.target.value)
+  }
 
   const toggleMobileMenu = () => {
     setMenu(!menu);
@@ -535,9 +549,10 @@ const StockManagement = () => {
                   <div className="col-lg-12 col-md-12">
                     <div className="form-group mb-0">
                       <label>Purity</label>
-                      <input
-                        type="text"
+                      <Select2
+                        onChange={handlePurityChange}
                         className="form-control"
+                        data={purityType}
                       // defaultValue="Stock in"
                       />
                     </div>
