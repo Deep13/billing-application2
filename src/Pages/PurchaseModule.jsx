@@ -1,3 +1,5 @@
+
+
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import DatePicker from "react-datepicker";
@@ -5,12 +7,11 @@ import "react-datepicker/dist/react-datepicker.css";
 import Header from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import Select2 from '../components/SelectDropdown'
-// import { Logo, signature, circle1, circle2 } from "../components/imagepath";
+import { Logo, signature, circle1, circle2 } from "../components/imagepath";
 import FeatherIcon from "feather-icons-react";
-import TableRow from "../components/TableRow";
 // import Select2 from "react-select2-wrapper";
 
-const BuyerModule = () => {
+const PurchaseModule = () => {
   const [menu, setMenu] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
 
@@ -161,26 +162,6 @@ const BuyerModule = () => {
     setTypeOption(e.target.value)
   }
 
-  const handleOnEnterAnyTableData = () => {
-    // if() {
-    //   setTableItems(prev => [
-    //     ...prev,
-    //     {
-    //       product: '',
-    //       type: '',
-    //       purity: 0,
-    //       rate: 0,
-    //       desc: '',
-    //       pcs: 0,
-    //       gross: 0,
-    //       net: 0,
-    //       amount: 0,
-    //       making_chares: 0,
-    //     }
-    //   ])
-    // }
-  }
-
   const AddItemToTable = () => {
     //reset items first
 
@@ -255,35 +236,6 @@ const BuyerModule = () => {
                             />
                           </div>
                         </div>
-
-
-                        <div className="col-lg-4 col-md-6 col-sm-12">
-                          <div className="form-group notes-form-group-info">
-                            <label>Address</label>
-                            <textarea
-                              disabled={disable}
-                              className="form-control"
-                              placeholder="Enter Address"
-                              defaultValue={""}
-                            />
-                          </div>
-                        </div>
-
-                        <div className="col-lg-4 col-md-6 col-sm-12">
-                          <div className="form-group">
-                            <label>Invoice Date</label>
-                            <div className="cal-icon cal-icon-info">
-                              <DatePicker
-                                disabled={disable}
-                                className="datetimepicker form-control"
-                                selected={startDate}
-                                onChange={(date) => setStartDate(date)}
-                              ></DatePicker>
-                              {/* <FeatherIcon icon="calendar"/> */}
-                            </div>
-                          </div>
-                        </div>
-
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
                             <label>Customer Name</label>
@@ -308,7 +260,31 @@ const BuyerModule = () => {
                             </ul>
                           </div>
                         </div>
-
+                        <div className="col-lg-4 col-md-6 col-sm-12">
+                          <div className="form-group">
+                            <label>Invoice Date</label>
+                            <div className="cal-icon cal-icon-info">
+                              <DatePicker
+                                disabled={disable}
+                                className="datetimepicker form-control"
+                                selected={startDate}
+                                onChange={(date) => setStartDate(date)}
+                              ></DatePicker>
+                              {/* <FeatherIcon icon="calendar"/> */}
+                            </div>
+                          </div>
+                        </div>
+                        <div className="col-lg-4 col-md-6 col-sm-12">
+                          <div className="form-group notes-form-group-info">
+                            <label>Address</label>
+                            <textarea
+                              disabled={disable}
+                              className="form-control"
+                              placeholder="Enter Address"
+                              defaultValue={""}
+                            />
+                          </div>
+                        </div>
                         <div className="col-lg-4 col-md-6 col-sm-12">
                           <div className="form-group">
                             <label>Due Date</label>
@@ -436,8 +412,8 @@ const BuyerModule = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-lg-12 py-2 col-md-6 col-sm-12 flex justify-between items-center row">
-                      {/* <button
+                    <div className="col-lg-12 py-2 col-md-6 col-sm-12 flex justify-end items-center">
+                      <button
                         data-bs-toggle="modal"
                         data-bs-target="#add_discount"
                         disabled={disable}
@@ -457,47 +433,7 @@ const BuyerModule = () => {
                         className="btn btn-primary flex items-center gap-2">
                         <FeatherIcon icon='plus' />
                         Add Product
-                      </button> */}
-                      <div className="col-lg-3 col-md-12">
-                        <div className="form-group">
-                          <label>Type</label>
-                          <Select2
-                            onChange={handleTypeChange}
-                            className="form-control w-100"
-                            data={jewelleryType}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-12">
-                        <div className="form-group">
-                          <label>purity</label>
-                          <Select2
-                            onChange={handleTypeChange}
-                            className="form-control w-100"
-                            data={jewelleryType}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-12">
-                        <div className="form-group">
-                          <label>Rate</label>
-                          <Select2
-                            onChange={handleTypeChange}
-                            className="form-control w-100"
-                            data={jewelleryType}
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-3 col-md-12">
-                        <div className="form-group">
-                          <label>Salesman Code</label>
-                          <Select2
-                            onChange={handleTypeChange}
-                            className="form-control w-100"
-                            data={jewelleryType}
-                          />
-                        </div>
-                      </div>
+                      </button>
                     </div>
                     <div className="form-group-item">
                       <div className="card-table">
@@ -507,9 +443,9 @@ const BuyerModule = () => {
                               <thead className="thead-light">
                                 <tr>
                                   <th>Product / Service</th>
-                                  {/* <th>Type</th>
+                                  <th>Type</th>
                                   <th>Purity</th>
-                                  <th>Rate</th> */}
+                                  <th>Rate</th>
                                   <th>Description</th>
                                   <th>Pcs</th>
                                   <th>Gross.</th>
@@ -524,16 +460,16 @@ const BuyerModule = () => {
                                   return (
                                     <tbody key={curr.product + index}>
                                       <tr >
-                                        <TableRow
-                                          product={curr.product}
-                                          desc={curr.desc}
-                                          pcs={curr.pcs}
-                                          gross={curr.gross}
-                                          net={curr.net}
-                                          amount={curr.amount}
-                                          making_charges={curr.making_chares}
-                                          handleOnEnterAnyData={handleOnEnterAnyTableData}
-                                        />
+                                        <td>{curr.product}</td>
+                                        <td>{curr.type}</td>
+                                        <td>{curr.purity}</td>
+                                        <td>{curr.rate}</td>
+                                        <td>{curr.desc}</td>
+                                        <td>{curr.pcs}</td>
+                                        <td>{curr.gross}</td>
+                                        <td>{curr.net}</td>
+                                        <td>{curr.amount}</td>
+                                        <td>{curr.making_chares}</td>
                                         <td className="d-flex align-items-center">
                                           <button
                                             to="#"
@@ -781,9 +717,9 @@ const BuyerModule = () => {
           id="add_discount"
           role="dialog"
         >
-          <div className="modal-dialog modal-dialog-centered modal-md w-[750%]">
+          <div className="modal-dialog modal-dialog-centered modal-md">
             <div className="modal-content">
-              <div className="modal-header border-0 pb-0 w-full">
+              <div className="modal-header border-0 pb-0">
                 <div className="form-header modal-header-title text-start mb-0 align-center">
                   <h4 className="mb-0">{
                     editMode ? 'Edit Product' : 'Add Product'
@@ -802,7 +738,7 @@ const BuyerModule = () => {
               </div>
               <div className="modal-body">
                 <div className="row">
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Product</label>
                       <input
@@ -813,7 +749,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Type</label>
                       <Select2
@@ -823,7 +759,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Purity</label>
                       <input
@@ -834,7 +770,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Rate</label>
                       <input
@@ -845,10 +781,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-
-                </div>
-                <div className='row'>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Description</label>
                       <input
@@ -859,7 +792,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Number of Pieces(Pcs.)</label>
                       <input
@@ -870,7 +803,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Amount</label>
                       <input
@@ -881,7 +814,7 @@ const BuyerModule = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group">
                       <label>Making Charges</label>
                       <input
@@ -894,7 +827,7 @@ const BuyerModule = () => {
                   </div>
 
 
-                  <div className="col-lg-6 col-md-12">
+                  <div className="col-lg-12 col-md-12">
                     <div className="form-group mb-0">
                       <label>Tax</label>
                       <Select2
@@ -1072,4 +1005,4 @@ const BuyerModule = () => {
     </>
   );
 };
-export default BuyerModule;
+export default PurchaseModule;

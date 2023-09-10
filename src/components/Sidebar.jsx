@@ -116,12 +116,12 @@ const Sidebar = (props) => {
                   <Link
                     to="/daily-expenses"
                     // // className={isSideMenu == "index" ? "subdrop" : "}
-                    className={`${"/daily_balance" === pathName ? "active" : ""}`}
+                    className={`${"/daily_balance" === pathName ? "active" : ""} text-black`}
                   // onClick={() =>
                   //     toggleSidebar(isSideMenu == "index" ? "" : "index")
                   // }
                   >
-                    <FeatherIcon icon="home" /> <span>Daily Expenses</span>{" "}
+                    <FeatherIcon icon="home" /> <span className="text-black">Daily Expenses</span>{" "}
                   </Link>
                   {/* {isSideMenu == "index" ? (
                                         <ul
@@ -202,7 +202,7 @@ const Sidebar = (props) => {
                   <Link
                     to="/stock-management"
                     className={`${"/stock_management" === pathName ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -210,12 +210,12 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="package" /> <span>Stock Management</span>{" "}
+                    <FeatherIcon icon="package" /> <span className="text-black">Stock Management</span>{" "}
                   </Link>
                   <Link
                     to="/expense-management"
                     className={`${"/expense_management" === pathName ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -223,12 +223,12 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="file-plus" /> <span>Expense Management</span>{" "}
+                    <FeatherIcon icon="file-plus" /> <span className="text-black">Expense Management</span>{" "}
                   </Link>
                   <Link
                     to="/buyer-module"
                     className={`${"/invoice_generation" === pathName ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -236,12 +236,25 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="clipboard" /> <span>Buyer Module</span>{" "}
+                    <FeatherIcon icon="clipboard" /> <span className="text-black">Buyer Module</span>{" "}
+                  </Link>
+                  <Link
+                    to="/purchase-module"
+                    className={`${"/invoice_generation" === pathName ? "active" : ""
+                      } text-black`}
+                  // onClick={() =>
+                  //     toggleSidebar(
+                  //         isSideMenu == "application" ? "" : "application"
+                  //     )
+                  // }
+                  >
+                    {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
+                    <FeatherIcon icon="clipboard" /> <span className="text-black">Purchase Module</span>{" "}
                   </Link>
                   <Link
                     to="/invoice-management"
                     className={`${("/invoice_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -249,12 +262,12 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="file" /> <span>Invoice Management</span>{" "}
+                    <FeatherIcon icon="file" /> <span className="text-black">Invoice Management</span>{" "}
                   </Link>
                   <Link
                     to="/master-data"
                     className={`${("/invoice_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -262,12 +275,12 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="file" /> <span>Master Data</span>{" "}
+                    <FeatherIcon icon="file" /> <span className="text-black">Master Data</span>{" "}
                   </Link>
                   <Link
                     to="/due-management"
                     className={`${("/due_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -275,12 +288,12 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="users" /> <span>Due Management</span>{" "}
+                    <FeatherIcon icon="users" /> <span className="text-black">Due Management</span>{" "}
                   </Link>
                   <Link
                     to="/invoice-generation"
                     className={`${("/due_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
-                      }`}
+                      } text-black`}
                   // onClick={() =>
                   //     toggleSidebar(
                   //         isSideMenu == "application" ? "" : "application"
@@ -288,7 +301,7 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="users" /> <span>Invoice Genereation</span>{" "}
+                    <FeatherIcon icon="users" /> <span className="text-black">Invoice Genereation</span>{" "}
                   </Link>
                 </li>
               </ul>
