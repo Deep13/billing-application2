@@ -476,7 +476,7 @@ const StockManagement = () => {
               </div>
               <div className="modal-body">
                 <div className="row">
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>Entry Date</label>
                       <input
@@ -486,7 +486,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>Om Code</label>
                       <input
@@ -496,7 +496,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>Gross Wt</label>
                       <input
@@ -506,7 +506,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>Stone Wt</label>
                       <input
@@ -516,7 +516,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>HUID</label>
                       <input
@@ -526,7 +526,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group">
                       <label>Net Wt</label>
                       <input
@@ -536,7 +536,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group mb-0">
                       <label>Quantity</label>
                       <input
@@ -546,7 +546,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group mb-0">
                       <label>Purity</label>
                       <Select2
@@ -557,7 +557,7 @@ const StockManagement = () => {
                       />
                     </div>
                   </div>
-                  <div className="col-lg-12 col-md-12">
+                  <div className="col-lg-6 col-md-12">
                     <div className="form-group mb-0">
                       <label>Ornament Desc</label>
                       <input
