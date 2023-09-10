@@ -651,7 +651,7 @@ const BuyerModule = () => {
                         <div className="col-xl-6 col-lg-12">
                           <div className="form-group-bank">
                             <div className="row">
-                              <div className="col-lg-4 col-md-12">
+                              {/* <div className="col-lg-4 col-md-12">
                                 <div className="form-group">
                                   <label>Discount Type</label>
                                   <Select2
@@ -663,10 +663,10 @@ const BuyerModule = () => {
                                     }}
                                   />
                                 </div>
-                              </div>
+                              </div> */}
                               <div className="col-lg-4 col-md-12">
                                 <div className="form-group">
-                                  <label>Discount (%)</label>
+                                  <label>Discounted Price</label>
                                   <input
                                     disabled={disable}
                                     type="text"

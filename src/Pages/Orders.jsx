@@ -8,7 +8,7 @@ import { Logo, signature, circle1, circle2 } from "../components/imagepath";
 import FeatherIcon from "feather-icons-react";
 // import Select2 from "react-select2-wrapper";
 
-const InvoiceGeneration = () => {
+const Orders = () => {
     const [menu, setMenu] = useState(false);
     const [startDate, setStartDate] = useState(new Date());
 
@@ -881,4 +881,4 @@ const InvoiceGeneration = () => {
         </>
     );
 };
-export default InvoiceGeneration;
+export default Orders;

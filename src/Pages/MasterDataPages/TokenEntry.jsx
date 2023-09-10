@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Header from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+import Header from "../../components/Navbar";
+import Sidebar from "../../components/Sidebar";
 import FeatherIcon from "feather-icons-react";
-import Data from "../assets/jsons/productList";
-import "../components/antd.css";
+import Data from "../../assets/jsons/productList";
+import "../../components/antd.css";
 import { Table } from "antd";
-import Select2 from '../components/SelectDropdown'
+// import Select2 from '../components/SelectDropdown'
 
 import {
     onShowSizeChange,
     itemRender,
-} from "../components/paginationfunction";
-import AddVendor from "../vendors/addVendor";
-import { FilterChart, search } from "../components/imagepath";
+} from "../../components/paginationfunction";
+// import AddVendor from "../vendors/addVendor";
+import { FilterChart, search } from "../../components/imagepath";
 
-const MasterData = () => {
+const TokenEntry = () => {
     const [menu, setMenu] = useState(false);
     const [show, setShow] = useState(false);
 
@@ -610,4 +610,4 @@ const MasterData = () => {
     );
 };
 
-export default MasterData;
+export default TokenEntry;

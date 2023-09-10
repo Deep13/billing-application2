@@ -291,7 +291,7 @@ const Sidebar = (props) => {
                     <FeatherIcon icon="users" /> <span className="text-black">Due Management</span>{" "}
                   </Link>
                   <Link
-                    to="/invoice-generation"
+                    to="/orders"
                     className={`${("/due_management" === pathName) || ("/invoice-paid" === pathName) || ("/invoice-list" === pathName) || ("/invoice-overdue" === pathName) || ("/invoice-draft" === pathName) || ("/invoice-recurring" === pathName) || ("/invoice-cancelled" === pathName) ? "active" : ""
                       } text-black`}
                   // onClick={() =>
@@ -301,7 +301,7 @@ const Sidebar = (props) => {
                   // }
                   >
                     {/* <FeatherIcon icon="grid" /> <span>Buyer Creation</span>{" "} */}
-                    <FeatherIcon icon="users" /> <span className="text-black">Invoice Genereation</span>{" "}
+                    <FeatherIcon icon="users" /> <span className="text-black">Orders</span>{" "}
                   </Link>
                 </li>
               </ul>
