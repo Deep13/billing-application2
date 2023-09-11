@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
@@ -17,6 +17,9 @@ import AddVendor from "../vendors/addVendor";
 
 const StockManagement = () => {
 
+  const datasource = Data?.Data;
+  console.log(datasource);
+  const [data, setData] = useState(datasource)
   const [menu, setMenu] = useState(false);
   const [show, setShow] = useState(false);
   const [purity, setPurity] = useState();
@@ -36,6 +39,28 @@ const StockManagement = () => {
     setMenu(!menu);
   };
 
+
+  const handleAddItem = () => {
+    let newItem = {
+      "Id": 1,
+      "Item": ItemRef.current.value,
+      "Code": OmCodeRef.current.value,
+      "EntryDate": DateRef.current.value,
+      "Quantity": QuantityRef.current.value,
+      "StoneWt": StoneWtRef.current.value,
+      "Purity": purity,
+      "PurchasePrice": 1500,
+      "Action": ""
+    }
+    setData(prev => [newItem, ...prev])
+    ItemRef.current.value = ""
+    OmCodeRef.current.value = ''
+    DateRef.current.value = ''
+    QuantityRef.current.value = ''
+    StoneWtRef.current.value = ''
+
+  }
+
   const [units, setUnits] = useState([
     { id: 1, text: "22-08-2023" },
     { id: 2, text: "15-09-2023" },
@@ -44,8 +69,6 @@ const StockManagement = () => {
     { id: 5, text: "2-11-2023" },
   ]);
 
-  const datasource = Data?.Data;
-  console.log(datasource);
 
   const columns = [
     {
@@ -150,6 +173,17 @@ const StockManagement = () => {
       sorter: (a, b) => a.Action.length - b.Action.length,
     },
   ];
+
+
+  const ItemRef = useRef()
+  const DateRef = useRef()
+  const OmCodeRef = useRef()
+  const GrossWtRef = useRef()
+  const StoneWtRef = useRef()
+  const HUIDRef = useRef()
+  const NetWtRef = useRef()
+  const QuantityRef = useRef()
+  const OrnamentDescRef = useRef()
 
   return (
     <>
@@ -266,7 +300,7 @@ const StockManagement = () => {
                           itemRender: itemRender,
                         }}
                         columns={columns}
-                        dataSource={datasource}
+                        dataSource={data}
                       />
                     </div>
                   </div>
@@ -480,6 +514,7 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Entry Date</label>
                       <input
+                        ref={DateRef}
                         type="date"
                         className="form-control"
                         defaultValue="Lorem ipsum dolor sit"
@@ -490,6 +525,18 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Om Code</label>
                       <input
+                        ref={OmCodeRef}
+                        type="text"
+                        className="form-control"
+                        defaultValue="P125389"
+                      />
+                    </div>
+                  </div>
+                  <div className="col-lg-6 col-md-12">
+                    <div className="form-group">
+                      <label>Item</label>
+                      <input
+                        ref={ItemRef}
                         type="text"
                         className="form-control"
                         defaultValue="P125389"
@@ -500,6 +547,7 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Gross Wt</label>
                       <input
+                        ref={GrossWtRef}
                         type="text"
                         className="form-control"
                         defaultValue="Box"
@@ -510,6 +558,7 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Stone Wt</label>
                       <input
+                        ref={StoneWtRef}
                         type="text"
                         className="form-control"
                       // defaultValue={3}
@@ -520,6 +569,7 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>HUID</label>
                       <input
+                        ref={HUIDRef}
                         type="text"
                         className="form-control"
                       // defaultValue="$155.00"
@@ -530,6 +580,7 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Net Wt</label>
                       <input
+                        ref={NetWtRef}
                         type="text"
                         className="form-control"
                       // defaultValue="$150.00"
@@ -540,6 +591,7 @@ const StockManagement = () => {
                     <div className="form-group mb-0">
                       <label>Quantity</label>
                       <input
+                        ref={QuantityRef}
                         type="text"
                         className="form-control"
                       // defaultValue="Stock in"
@@ -561,6 +613,7 @@ const StockManagement = () => {
                     <div className="form-group mb-0">
                       <label>Ornament Desc</label>
                       <input
+                        ref={OrnamentDescRef}
                         type="text"
                         className="form-control"
                       // defaultValue="Stock in"
@@ -581,6 +634,7 @@ const StockManagement = () => {
                   to="#"
                   data-bs-dismiss="modal"
                   className="btn btn-primary paid-continue-btn"
+                  onClick={handleAddItem}
                 >
                   Add
                 </Link>
