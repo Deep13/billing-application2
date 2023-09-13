@@ -166,7 +166,7 @@ td.ant-table-column-sort {
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
   color: rgb(108, 117, 125) !important;
-  font-family: 'CircularStd', sans-serif !important;
+  font-family: "CircularStd", sans-serif !important;
   font-size: 15px !important;
   height: 36px !important;
 }
@@ -184,7 +184,7 @@ td.ant-table-column-sort {
 .ant-pagination-total-text {
   float: left;
   color: rgb(51, 51, 51) !important;
-  font-family: 'CircularStd', sans-serif !important;
+  font-family: "CircularStd", sans-serif !important;
   font-size: 15px !important;
 }
 .ant-pagination-item-active {
@@ -433,7 +433,7 @@ td.ant-table-column-sort {
 .ant-pagination-jump-prev,
 .ant-pagination-jump-next {
   color: rgb(108, 117, 125) !important;
-  font-family: 'CircularStd', sans-serif !important;
+  font-family: "CircularStd", sans-serif !important;
   font-size: 15px !important;
   height: 36px !important;
 }
@@ -451,7 +451,7 @@ td.ant-table-column-sort {
 .ant-pagination-total-text {
   float: left;
   color: rgb(51, 51, 51) !important;
-  font-family: 'CircularStd', sans-serif !important;
+  font-family: "CircularStd", sans-serif !important;
   font-size: 15px !important;
 }
 .ant-pagination-item-active {
@@ -472,7 +472,7 @@ td.ant-table-column-sort {
   height: 0;
   overflow: hidden;
   visibility: hidden;
-  content: ' ';
+  content: " ";
 }
 .ant-pagination-options-size-changer.ant-select {
   display: inline-block;
@@ -487,7 +487,7 @@ td.ant-table-column-sort {
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
-  font-feature-settings: 'tnum';
+  font-feature-settings: "tnum";
   position: relative;
   display: inline-block;
   cursor: pointer;
@@ -570,7 +570,7 @@ li.ant-pagination-total-text {
   font-variant: tabular-nums;
   line-height: 1.5715;
   list-style: none;
-  font-feature-settings: 'tnum';
+  font-feature-settings: "tnum";
 }
 .ant-pagination {
   margin-top: 20px !important;
@@ -581,9 +581,9 @@ li.ant-pagination-total-text {
   min-width: 32px;
   height: 32px;
   margin-right: 8px;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji',
-    'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   line-height: 30px;
   text-align: center;
   vertical-align: middle;
@@ -619,7 +619,7 @@ li.ant-pagination-options {
 
 .ant-table tbody tr td {
   border-color: #dee2e6;
-  color: #878a99;
+  color: #000;
   font-weight: 400;
   border-top: 0;
   font-size: 13px;

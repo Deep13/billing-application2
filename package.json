@@ -1,9 +1,9 @@
 {
   "name": "jewellery-billing-application",
   "private": true,
-  "version": "0.0.0",  
+  "version": "0.0.0",
   "type": "module",
-   "homepage": ".",
+  "homepage": "http://localhost/Billing/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",

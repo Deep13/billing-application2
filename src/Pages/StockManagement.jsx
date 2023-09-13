@@ -19,7 +19,18 @@ const StockManagement = () => {
 
   const datasource = Data?.Data;
   console.log(datasource);
-  const [data, setData] = useState(datasource)
+  const [data, setData] = useState([{
+    Id: '1',
+    EntryDate: new Date().toLocaleDateString(),
+    OmDesc: 'GOLD',
+    OmCode: '1234',
+    Purity: '22K',
+    grosswt: '23.8',
+    netwt: '23.5',
+    stonewt: '12',
+    qty: '20',
+    huid: '1234',
+  }])
   const [menu, setMenu] = useState(false);
   const [show, setShow] = useState(false);
   const [purity, setPurity] = useState();
@@ -42,22 +53,18 @@ const StockManagement = () => {
 
   const handleAddItem = () => {
     let newItem = {
-      "Id": 1,
-      "Item": ItemRef.current.value,
-      "Code": OmCodeRef.current.value,
-      "EntryDate": DateRef.current.value,
-      "Quantity": QuantityRef.current.value,
-      "StoneWt": StoneWtRef.current.value,
-      "Purity": purity,
-      "PurchasePrice": 1500,
-      "Action": ""
+      Id: '1',
+      EntryDate: new Date().toLocaleDateString(),
+      OmDesc: 'GOLD',
+      OmCode: '1234',
+      Purity: '22K',
+      grosswt: '23.8',
+      netwt: '23.5',
+      stonewt: '12',
+      qty: '20',
+      huid: '1234',
     }
     setData(prev => [newItem, ...prev])
-    ItemRef.current.value = ""
-    OmCodeRef.current.value = ''
-    DateRef.current.value = ''
-    QuantityRef.current.value = ''
-    StoneWtRef.current.value = ''
 
   }
 
@@ -77,39 +84,50 @@ const StockManagement = () => {
       sorter: (a, b) => a.Id.length - b.Id.length,
     },
     {
-      title: "Item",
-      dataIndex: "Item",
-      sorter: (a, b) => a.Item.length - b.Item.length,
-    },
-    {
-      title: "Code",
-      dataIndex: "Code",
-      sorter: (a, b) => a.Code.length - b.Code.length,
-    },
-    {
       title: "Entry Date",
       dataIndex: "EntryDate",
-      sorter: (a, b) => a.Units.length - b.Units.length,
+      sorter: (a, b) => a.EntryDate.length - b.EntryDate.length,
     },
     {
-      title: "Quantity",
-      dataIndex: "Quantity",
-      sorter: (a, b) => a.Quantity.length - b.Quantity.length,
+      title: "Ornament Desc",
+      dataIndex: "OmDesc",
+      sorter: (a, b) => a.OmDesc.length - b.OmDesc.length,
     },
     {
-      title: "Stone Wt",
-      dataIndex: "StoneWt",
-      sorter: (a, b) => a.StoneWt.length - b.StoneWt.length,
+      title: "OmCode",
+      dataIndex: "OmCode",
+      sorter: (a, b) => a.OmCode.length - b.OmCode.length,
     },
+
     {
       title: "Purity",
       dataIndex: "Purity",
       sorter: (a, b) => a.Purity.length - b.Purity.length,
     },
     {
-      title: "Purchase Price",
-      dataIndex: "PurchasePrice",
-      sorter: (a, b) => a.Purchase.length - b.Purchase.length,
+      title: "Gross Wt",
+      dataIndex: "grosswt",
+      sorter: (a, b) => a.grosswt.length - b.grosswt.length,
+    },
+    {
+      title: "Net Wt",
+      dataIndex: "netwt",
+      sorter: (a, b) => a.netwt.length - b.netwt.length,
+    },
+    {
+      title: "Stone Wt",
+      dataIndex: "stonewt",
+      sorter: (a, b) => a.stonewt.length - b.stonewt.length,
+    },
+    {
+      title: "Qty",
+      dataIndex: "qty",
+      sorter: (a, b) => a.qty.length - b.qty.length,
+    },
+    {
+      title: "HUID",
+      dataIndex: "huid",
+      sorter: (a, b) => a.huid.length - b.huid.length,
     },
     {
       title: "Action",
@@ -199,37 +217,6 @@ const StockManagement = () => {
                 <h5>Stock Management</h5>
                 <div className="list-btn">
                   <ul className="filter-list">
-                    <li>
-                      <Link className="btn btn-filters w-auto popup-toggle"
-                        onClick={() => { setShow(!show) }}
-                        to="#"
-                      >
-                        <span className="me-2">
-                          {/* <i className="fe fe-filter" /> */}
-                          <FeatherIcon icon="filter" />
-                        </span>
-                        Filter{" "}
-                      </Link>
-                    </li>
-                    <li>
-                      {/* <Link className="btn-filters" to="#">
-                                                <span>
-                                                    <i className="fe fe-grid" />
-                                                    <FeatherIcon icon="grid" />
-                                                </span>{" "}
-                                            </Link> */}
-                    </li>
-                    <li>
-                      {/* <Link
-                                                className="active btn-filters me-2"
-                                                to="#"
-                                            >
-                                                <span>
-                                                    <i className="fe fe-list" />
-                                                    <FeatherIcon icon="list" />
-                                                </span>{" "}
-                                            </Link> */}
-                    </li>
                     <li className="me-2">
                       <div className="dropdown dropdown-action">
                         <Link
@@ -291,14 +278,6 @@ const StockManagement = () => {
                   <div className="card-body">
                     <div className="table-responsive table-hover">
                       <Table
-                        pagination={{
-                          total: datasource.length,
-                          showTotal: (total, range) =>
-                            `Showing ${range[0]} to ${range[1]} of ${total} entries`,
-                          showSizeChanger: true,
-                          onShowSizeChange: onShowSizeChange,
-                          itemRender: itemRender,
-                        }}
                         columns={columns}
                         dataSource={data}
                       />
@@ -315,180 +294,6 @@ const StockManagement = () => {
           setShow={setShow}
           show={show}
         />
-
-        <div className="modal custom-modal fade" id="stock_in" role="dialog">
-          <div className="modal-dialog modal-dialog-centered modal-md">
-            <div className="modal-content">
-              <div className="modal-header border-0 pb-0">
-                <div className="form-header modal-header-title text-start mb-0">
-                  <h4 className="mb-0">Add Stock in</h4>
-                </div>
-                <button
-                  type="button"
-                  className="close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span className="align-center" aria-hidden="true">
-                    ×
-                  </span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <div className="row">
-                  <div className="col-lg-12 col-md-12">
-                    <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        className="bg-white-smoke form-control"
-                        placeholder="SEO Service"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group">
-                      <label>Quantity</label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        placeholder={0}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group mb-0">
-                      <label>Entry Date</label>
-                      {/* <Select2
-                        className="w-100"
-                        data={units}
-                        options={{
-                          placeholder: "Pieces",
-                        }}
-                      /> */}
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group mb-0">
-                      <label>Notes</label>
-                      <textarea
-                        rows={3}
-                        cols={3}
-                        className="form-control"
-                        placeholder="Enter Notes"
-                        defaultValue={""}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <Link
-                  to="#"
-                  data-bs-dismiss="modal"
-                  className="btn btn-primary paid-cancel-btn me-2"
-                >
-                  Cancel
-                </Link>
-                <Link
-                  to="#"
-                  data-bs-dismiss="modal"
-                  className="btn btn-primary paid-continue-btn"
-                >
-                  Add Quantity
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="modal custom-modal fade" id="stock_out" role="dialog">
-          <div className="modal-dialog modal-dialog-centered modal-md">
-            <div className="modal-content">
-              <div className="modal-header border-0 pb-0">
-                <div className="form-header modal-header-title text-start mb-0">
-                  <h4 className="mb-0">Remove Stock</h4>
-                </div>
-                <button
-                  type="button"
-                  className="close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                >
-                  <span className="align-center" aria-hidden="true">
-                    ×
-                  </span>
-                </button>
-              </div>
-              <div className="modal-body">
-                <div className="row">
-                  <div className="col-lg-12 col-md-12">
-                    <div className="form-group">
-                      <label>Name</label>
-                      <input
-                        type="text"
-                        className="bg-white-smoke form-control"
-                        placeholder="SEO Service"
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group">
-                      <label>Quantity</label>
-                      <input
-                        type="number"
-                        className="form-control"
-                        placeholder={0}
-                      />
-                    </div>
-                  </div>
-                  <div className="col-lg-6 col-md-12">
-                    <div className="form-group mb-0">
-                      <label>Units</label>
-                      {/* <Select2
-                        className="w-100"
-                        data={units}
-                        options={{
-                          placeholder: "Pieces",
-                        }}
-                      /> */}
-                    </div>
-                  </div>
-                  <div className="col-lg-12">
-                    <div className="form-group mb-0">
-                      <label>Notes</label>
-                      <textarea
-                        rows={3}
-                        cols={3}
-                        className="form-control"
-                        placeholder="Enter Notes"
-                        defaultValue={""}
-                      />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="modal-footer">
-                <Link
-                  to="#"
-                  data-bs-dismiss="modal"
-                  className="btn btn-primary paid-cancel-btn me-2"
-                >
-                  Cancel
-                </Link>
-                <Link
-                  to="#"
-                  data-bs-dismiss="modal"
-                  className="btn btn-primary paid-continue-btn"
-                >
-                  Remove Quantity
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
 
         <div className="modal custom-modal fade" id="edit_inventory" role="dialog">
           <div className="modal-dialog modal-dialog-centered modal-md">
@@ -514,10 +319,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Entry Date</label>
                       <input
-                        ref={DateRef}
                         type="date"
                         className="form-control"
-                        defaultValue="Lorem ipsum dolor sit"
                       />
                     </div>
                   </div>
@@ -525,10 +328,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Om Code</label>
                       <input
-                        ref={OmCodeRef}
                         type="text"
                         className="form-control"
-                        defaultValue="P125389"
                       />
                     </div>
                   </div>
@@ -536,10 +337,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Item</label>
                       <input
-                        ref={ItemRef}
                         type="text"
                         className="form-control"
-                        defaultValue="P125389"
                       />
                     </div>
                   </div>
@@ -547,10 +346,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Gross Wt</label>
                       <input
-                        ref={GrossWtRef}
                         type="text"
                         className="form-control"
-                        defaultValue="Box"
                       />
                     </div>
                   </div>
@@ -558,10 +355,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Stone Wt</label>
                       <input
-                        ref={StoneWtRef}
                         type="text"
                         className="form-control"
-                      // defaultValue={3}
                       />
                     </div>
                   </div>
@@ -569,10 +364,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>HUID</label>
                       <input
-                        ref={HUIDRef}
                         type="text"
                         className="form-control"
-                      // defaultValue="$155.00"
                       />
                     </div>
                   </div>
@@ -580,10 +373,8 @@ const StockManagement = () => {
                     <div className="form-group">
                       <label>Net Wt</label>
                       <input
-                        ref={NetWtRef}
                         type="text"
                         className="form-control"
-                      // defaultValue="$150.00"
                       />
                     </div>
                   </div>
@@ -591,10 +382,8 @@ const StockManagement = () => {
                     <div className="form-group mb-0">
                       <label>Quantity</label>
                       <input
-                        ref={QuantityRef}
                         type="text"
                         className="form-control"
-                      // defaultValue="Stock in"
                       />
                     </div>
                   </div>
@@ -605,7 +394,6 @@ const StockManagement = () => {
                         onChange={handlePurityChange}
                         className="form-control"
                         data={purityType}
-                      // defaultValue="Stock in"
                       />
                     </div>
                   </div>
@@ -613,10 +401,8 @@ const StockManagement = () => {
                     <div className="form-group mb-0">
                       <label>Ornament Desc</label>
                       <input
-                        ref={OrnamentDescRef}
                         type="text"
                         className="form-control"
-                      // defaultValue="Stock in"
                       />
                     </div>
                   </div>
